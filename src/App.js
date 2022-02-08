@@ -6,6 +6,10 @@ function App() {
   const [introduce, setIntroduce] = useState("");
   const [repeat, setRepeat] = useState(false);
 
+  const scrollHeight = document.documentElement.scrollHeight;
+  const scrollTop = document.documentElement.scrollTop;
+  const clientHeight = document.documentElement.clientHeight;
+
   useEffect(() => {
     const timeSet = setTimeout(function () {
       setToggle(!toggle);
@@ -42,19 +46,25 @@ function App() {
 
   return (
     <Container>
-      <FlexBox>
-        <div>{introduce}</div>
-        <CursorBox>
-          <Cursor active={toggle} />
-        </CursorBox>
-      </FlexBox>
+      <ProgressBar value={scrollTop} max={scrollHeight - clientHeight} />
+      <TopContainer>
+        <FlexBox>
+          <div>{introduce}</div>
+          <CursorBox>
+            <Cursor active={toggle} />
+          </CursorBox>
+        </FlexBox>
+      </TopContainer>
     </Container>
   );
 }
 
 export default App;
-
 const Container = styled.div`
+  height: 400vh;
+`;
+
+const TopContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
@@ -77,5 +87,17 @@ const Cursor = styled.div`
   width: 2px;
   height: 100%;
   border: 1px solid black;
-  display: ${({ active }) => (active ? "none" : "inline-block")};
+  display: ${({ active }) => (active ? "none" : "block")};
+`;
+
+const ProgressBar = styled.progress`
+  position: sticky;
+  top: 0;
+  margin: 0 auto;
+  width: 100%;
+  height: 5px;
+  background-color: green;
+  ::-webkit-progress-bar {
+    background-color: white;
+  }
 `;
