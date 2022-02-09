@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
+import sakura from "./img/sakura.gif";
 
 function App() {
   const [toggle, setToggle] = useState(false);
@@ -10,6 +11,7 @@ function App() {
   const scrollTop = document.documentElement.scrollTop;
   const clientHeight = document.documentElement.clientHeight;
 
+  //커서 깜빡임 효과
   useEffect(() => {
     const timeSet = setTimeout(function () {
       setToggle(!toggle);
@@ -28,11 +30,10 @@ function App() {
       setIntroduce(testArr.join(""));
     };
 
-    typingFnc(strArr);
+    let start = setTimeout(() => typingFnc(strArr), 500);
 
-    //10초 후에 지우기
-    let delIntro = (arr) => {
-      console.log("hi");
+    //20초 후에 지우기
+    let delIntro = () => {
       if (testArr.length <= 0) {
         setTimeout(() => setRepeat(!repeat), 500);
         return;
@@ -41,63 +42,107 @@ function App() {
       setTimeout(() => delIntro(testArr), 20);
       setIntroduce(testArr.join(""));
     };
-    setTimeout(() => delIntro(testArr), 20 * 1000);
+    let finish = setTimeout(() => delIntro(), 20 * 1000);
+    return () => {
+      clearTimeout(start);
+      clearTimeout(finish);
+    };
   }, [repeat]);
 
   return (
     <Container>
       <ProgressBar value={scrollTop} max={scrollHeight - clientHeight} />
-      <TopContainer>
-        <FlexBox>
-          <div>{introduce}</div>
-          <CursorBox>
-            <Cursor active={toggle} />
-          </CursorBox>
-        </FlexBox>
-      </TopContainer>
+      <Landing>
+        <TopContainer>
+          <FlexBox>
+            <div>{introduce}</div>
+            <CursorBox>
+              <Cursor active={toggle} />
+            </CursorBox>
+          </FlexBox>
+        </TopContainer>
+        <SakuraBg src={sakura} alt="" />
+      </Landing>
     </Container>
   );
 }
 
 export default App;
 const Container = styled.div`
-  height: 400vh;
+  position: relative;
+  height: 100%;
 `;
 
+const Landing = styled.div`
+  position: relative;
+  height: 100vh;
+`;
 const TopContainer = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 100%;
   display: flex;
   justify-content: center;
-  border: 1px solid red;
   padding: 2rem;
-  line-height: 24px;
+  color: white;
+  z-index: 400;
 `;
 
 const FlexBox = styled.div`
   display: flex;
+  font-size: 52px;
+  @media only screen and (max-width: 980px) {
+    font-size: 32px;
+  }
+  @media only screen and (max-width: 530px) {
+    font-size: 28px;
+  }
+  @media only screen and (max-width: 425px) {
+    font-size: 16px;
+  }
 `;
 
 const CursorBox = styled.div`
   width: 1px;
-  height: 24px;
-  margin-left: 1px;
+  height: 52px;
+  margin-left: 4px;
+  @media only screen and (max-width: 980px) {
+    height: 32px;
+  }
+  @media only screen and (max-width: 530px) {
+    height: 28px;
+  }
+  @media only screen and (max-width: 425px) {
+    height: 16px;
+    margin-left: 2px;
+  }
 `;
 
 const Cursor = styled.div`
-  width: 2px;
+  width: 4px;
   height: 100%;
-  border: 1px solid black;
+  border: 2px solid white;
   display: ${({ active }) => (active ? "none" : "block")};
 `;
 
 const ProgressBar = styled.progress`
-  position: sticky;
+  position: fixed;
   top: 0;
-  margin: 0 auto;
   width: 100%;
   height: 5px;
   background-color: green;
   ::-webkit-progress-bar {
     background-color: white;
   }
+  z-index: 100;
+`;
+
+const SakuraBg = styled.img`
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  z-index: 10;
 `;
