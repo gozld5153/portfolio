@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-import sakura from "./img/sakura.gif";
+// import sakura from "./img/sakura.gif";
+
+import { FaSistrix } from "react-icons/fa";
 
 function App() {
   const [toggle, setToggle] = useState(false);
   const [introduce, setIntroduce] = useState("");
   const [repeat, setRepeat] = useState(false);
+  const [value, setValue] = useState("");
 
   const scrollHeight = document.documentElement.scrollHeight;
   const scrollTop = document.documentElement.scrollTop;
@@ -44,10 +47,28 @@ function App() {
     };
     let finish = setTimeout(() => delIntro(), 20 * 1000);
     return () => {
-      clearTimeout(start);
       clearTimeout(finish);
+      clearTimeout(start);
     };
   }, [repeat]);
+
+  //번역 함수
+  const handleTranslation = (e) => {
+    setValue(e.target.value);
+  };
+
+  const fetchingTranslation = (e) => {
+    let url = `/v2/translation/translate?src_lang=kr&target_lang=en&query=${value}`;
+    if (e.code === "Enter" || e.type === "click")
+      fetch(url, {
+        headers: {
+          Authorization: `KakaoAK ${process.env.REACT_APP_REST_API}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((res) => setValue(res.translated_text[0][0]))
+        .catch((err) => console.log(err.response));
+  };
 
   return (
     <Container>
@@ -61,7 +82,20 @@ function App() {
             </CursorBox>
           </FlexBox>
         </TopContainer>
-        <SakuraBg src={sakura} alt="" />
+        {/* 배경화면 벚꽃 흩날리기! */}
+        {/* <SakuraBg src={sakura} alt="" /> */}
+        <VarBox>
+          <input
+            type="text"
+            placeholder="변수명 번역기"
+            onChange={handleTranslation}
+            onKeyPress={fetchingTranslation}
+            value={value}
+          />
+          <div onClick={fetchingTranslation}>
+            <FaSistrix />
+          </div>
+        </VarBox>
       </Landing>
     </Container>
   );
@@ -76,6 +110,8 @@ const Container = styled.div`
 const Landing = styled.div`
   position: relative;
   height: 100vh;
+  /* 랜딩박스 경계선 */
+  border: 2px solid green;
 `;
 const TopContainer = styled.div`
   position: absolute;
@@ -86,8 +122,30 @@ const TopContainer = styled.div`
   display: flex;
   justify-content: center;
   padding: 2rem;
-  color: white;
+  font-family: "East Sea Dokdo", cursive;
+  /* 배경이 없을땐 주석처리! */
+  /* color: white;*/
   z-index: 400;
+`;
+
+const VarBox = styled.div`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  input {
+    height: 26px;
+    padding-left: 3px;
+    @media only screen and (max-width: 425px) {
+      width: 100px;
+    }
+  }
+  div {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    cursor: pointer;
+  }
 `;
 
 const FlexBox = styled.div`
@@ -123,7 +181,7 @@ const CursorBox = styled.div`
 const Cursor = styled.div`
   width: 4px;
   height: 100%;
-  border: 2px solid white;
+  border: 2px solid black;
   display: ${({ active }) => (active ? "none" : "block")};
 `;
 
@@ -139,10 +197,10 @@ const ProgressBar = styled.progress`
   z-index: 100;
 `;
 
-const SakuraBg = styled.img`
-  width: 100%;
-  height: 100vh;
-  position: absolute;
-  top: 0;
-  z-index: 10;
-`;
+// const SakuraBg = styled.img`
+//   width: 100%;
+//   height: 100vh;
+//   position: absolute;
+//   top: 0;
+//   z-index: 10;
+// `;

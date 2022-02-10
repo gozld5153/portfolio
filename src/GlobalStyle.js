@@ -5,7 +5,11 @@ const GlobalStyle = createGlobalStyle`
     margin: 0; 
     padding: 0; 
     box-sizing: border-box;
-    font-family: 'East Sea Dokdo', cursive;
+  }
+
+  button {
+    border: none;
+    background-color: white;
   }
 
 `;
