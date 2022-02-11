@@ -33,7 +33,7 @@ function App() {
       setIntroduce(testArr.join(""));
     };
 
-    let start = setTimeout(() => typingFnc(strArr), 500);
+    let start = setTimeout(() => typingFnc(strArr), 1500);
 
     //20초 후에 지우기
     let delIntro = () => {
@@ -52,7 +52,7 @@ function App() {
     };
   }, [repeat]);
 
-  //번역 함수
+  //번역
   const handleTranslation = (e) => {
     setValue(e.target.value);
   };
@@ -123,6 +123,7 @@ const TopContainer = styled.div`
   justify-content: center;
   padding: 2rem;
   font-family: "East Sea Dokdo", cursive;
+
   /* 배경이 없을땐 주석처리! */
   /* color: white;*/
   z-index: 400;
@@ -134,10 +135,19 @@ const VarBox = styled.div`
   right: 10px;
 
   input {
-    height: 26px;
-    padding-left: 3px;
-    @media only screen and (max-width: 425px) {
-      width: 100px;
+    height: 2.5rem;
+    padding-left: 0.5rem;
+    font-weight: 500;
+    font-size: 1.5rem;
+    border: none;
+    border-bottom: 2px solid gray;
+    :focus {
+      outline: none;
+      border-bottom: 3px solid black;
+    }
+    @media only screen and (max-width: 530px) {
+      font-size: 1.5rem;
+      width: 12rem;
     }
   }
   div {
@@ -145,6 +155,7 @@ const VarBox = styled.div`
     top: 4px;
     right: 4px;
     cursor: pointer;
+    font-size: 1.5rem;
   }
 `;
 
