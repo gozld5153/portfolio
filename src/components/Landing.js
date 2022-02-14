@@ -56,7 +56,7 @@ export default function Landing() {
   };
 
   const fetchingTranslation = (e) => {
-    let url = `/v2/translation/translate?src_lang=kr&target_lang=en&query=${value}`;
+    let url = `https://dapi.kakao.com/v2/translation/translate?src_lang=kr&target_lang=en&query=${value}`;
     if (e.code === "Enter" || e.type === "click")
       fetch(url, {
         headers: {
