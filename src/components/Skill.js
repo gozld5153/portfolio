@@ -16,8 +16,6 @@ export default function Skill() {
   const handleSkill = useCallback((entry) => {
     if (entry[0].isIntersecting) {
       setIntersecting(true);
-    } else {
-      setIntersecting(false);
     }
   }, []);
 
