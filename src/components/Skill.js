@@ -4,6 +4,14 @@ import styled, { css } from "styled-components";
 export default function Skill() {
   const skillBox = useRef();
   const [intersecting, setIntersecting] = useState(false);
+  const skillArray = [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "React",
+    "TypeScript",
+    "의사소통",
+  ];
 
   const handleSkill = useCallback((entry) => {
     if (entry[0].isIntersecting) {
@@ -30,31 +38,31 @@ export default function Skill() {
   }, [handleSkill]);
   return (
     <SkillBox>
+      <Title>Skill</Title>
       <CircleContainer ref={skillBox}>
-        {Array(5)
+        {Array(6)
           .fill(0)
           .map((_, idx) => {
             return (
               <CircleBox category={idx} intersecting={intersecting} key={idx}>
                 <svg>
-                  <circle cx="80" cy="80" r="50" />
+                  <circle cx="80" cy="80" r="60" />
                 </svg>
               </CircleBox>
             );
           })}
       </CircleContainer>
       <SecondCircle>
-        {Array(5)
-          .fill(0)
-          .map((_, idx) => {
-            return (
-              <BackCircle key={idx}>
-                <svg>
-                  <circle cx="80" cy="80" r="50" />
-                </svg>
-              </BackCircle>
-            );
-          })}
+        {skillArray.map((skill, idx) => {
+          return (
+            <BackCircle key={idx} skill={skill}>
+              <svg>
+                <circle cx="80" cy="80" r="60" />
+              </svg>
+              <SkillName key={skill}>{skill}</SkillName>
+            </BackCircle>
+          );
+        })}
       </SecondCircle>
     </SkillBox>
   );
@@ -63,38 +71,85 @@ export default function Skill() {
 const SkillBox = styled.div`
   position: relative;
 `;
+
+const Title = styled.div`
+  width: 30vh;
+  font-size: 3rem;
+  font-weight: bold;
+  border-bottom: 4px solid black;
+  margin: 1rem auto;
+  text-align: center;
+`;
+
 const CircleContainer = styled.div`
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 `;
 
 const SecondCircle = styled(CircleContainer)`
+  transform: translateY(-100%);
+`;
+
+const SkillName = styled.div`
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(90deg);
+  font-weight: 500;
 `;
 
 const BackCircle = styled.div`
   transform: rotate(-90deg);
-  width: 170px;
-  height: 170px;
+  width: 160px;
+  height: 160px;
   circle {
     fill: none;
     stroke: white;
     stroke-width: 10;
-    filter: drop-shadow(0 0 5px red);
+    ${({ skill }) =>
+      skill === "HTML" &&
+      css`
+        filter: drop-shadow(0 0 5px red);
+      `}
+    ${({ skill }) =>
+      skill === "CSS" &&
+      css`
+        filter: drop-shadow(0 0 5px blue);
+      `}
+      ${({ skill }) =>
+      skill === "JavaScript" &&
+      css`
+        filter: drop-shadow(0 0 5px #f1d00a);
+      `}
+      ${({ skill }) =>
+      skill === "React" &&
+      css`
+        filter: drop-shadow(0 0 5px black);
+      `}
+      ${({ skill }) =>
+      skill === "TypeScript" &&
+      css`
+        filter: drop-shadow(0 0 5px #2666cf);
+      `}
+      ${({ skill }) =>
+      skill === "의사소통" &&
+      css`
+        filter: drop-shadow(0 0 5px hotpink);
+      `}
   }
   z-index: 10;
 `;
 const CircleBox = styled.div`
   transform: rotate(-90deg);
-  width: 170px;
-  height: 170px;
+  width: 160px;
+  height: 160px;
   z-index: 100;
   circle {
     fill: none;
     stroke-width: 10;
-    stroke-dasharray: 360;
-    stroke-dashoffset: 360;
+    stroke-dasharray: 380;
+    stroke-dashoffset: 380;
     stroke-linecap: round;
 
     ${({ category }) =>
@@ -106,7 +161,7 @@ const CircleBox = styled.div`
           intersecting ? "circle-html 1s ease-in-out forwards" : null};
         @keyframes circle-html {
           to {
-            stroke-dashoffset: 120;
+            stroke-dashoffset: 100;
           }
         }
       `}
@@ -120,7 +175,7 @@ const CircleBox = styled.div`
           intersecting ? "circle-css 1s ease-in-out forwards" : null};
         @keyframes circle-css {
           to {
-            stroke-dashoffset: 150;
+            stroke-dashoffset: 120;
           }
         }
       `}
@@ -163,6 +218,20 @@ const CircleBox = styled.div`
         @keyframes circle-ts {
           to {
             stroke-dashoffset: 340;
+          }
+        }
+      `}
+
+      ${({ category }) =>
+      category === 5 &&
+      css`
+        stroke: hotpink;
+        filter: drop-shadow(0 0 5px hotpink);
+        animation: ${({ intersecting }) =>
+          intersecting ? "circle-html 1s ease-in-out forwards" : null};
+        @keyframes circle-html {
+          to {
+            stroke-dashoffset: 40;
           }
         }
       `}

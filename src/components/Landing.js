@@ -134,9 +134,10 @@ const TopContainer = styled.div`
 `;
 
 const VarBox = styled.div`
-  position: fixed;
+  position: -webkit-sticky;
+  position: sticky;
   top: 10px;
-  right: 10px;
+  float: right;
 
   input {
     height: 2.5rem;
