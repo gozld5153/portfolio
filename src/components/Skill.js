@@ -155,7 +155,9 @@ const CircleBox = styled.div`
     ${({ category }) =>
       category === 0 &&
       css`
+        -webkit-stroke: red;
         stroke: red;
+        -webkit-filter: drop-shadow(0 0 5px red);
         filter: drop-shadow(0 0 5px red);
         animation: ${({ intersecting }) =>
           intersecting ? "circle-html 1s ease-in-out forwards" : null};
