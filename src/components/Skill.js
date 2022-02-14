@@ -110,31 +110,37 @@ const BackCircle = styled.div`
     ${({ skill }) =>
       skill === "HTML" &&
       css`
+        -webkit-filter: drop-shadow(0 0 5px red);
         filter: drop-shadow(0 0 5px red);
       `}
     ${({ skill }) =>
       skill === "CSS" &&
       css`
+        -webkit-filter: drop-shadow(0 0 5px blue);
         filter: drop-shadow(0 0 5px blue);
       `}
       ${({ skill }) =>
       skill === "JavaScript" &&
       css`
+        -webkit-filter: drop-shadow(0 0 5px #f1d00a);
         filter: drop-shadow(0 0 5px #f1d00a);
       `}
       ${({ skill }) =>
       skill === "React" &&
       css`
+        -webkit-filter: drop-shadow(0 0 5px black);
         filter: drop-shadow(0 0 5px black);
       `}
       ${({ skill }) =>
       skill === "TypeScript" &&
       css`
+        -webkit-filter: drop-shadow(0 0 5px #2666cf);
         filter: drop-shadow(0 0 5px #2666cf);
       `}
       ${({ skill }) =>
       skill === "의사소통" &&
       css`
+        -webkit-filter: drop-shadow(0 0 5px hotpink);
         filter: drop-shadow(0 0 5px hotpink);
       `}
   }
@@ -155,7 +161,6 @@ const CircleBox = styled.div`
     ${({ category }) =>
       category === 0 &&
       css`
-        -webkit-stroke-color: red;
         stroke: red;
         -webkit-filter: drop-shadow(0 0 5px red);
         filter: drop-shadow(0 0 5px red);
