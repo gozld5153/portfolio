@@ -155,7 +155,7 @@ const CircleBox = styled.div`
     ${({ category }) =>
       category === 0 &&
       css`
-        -webkit-stroke: red;
+        -webkit-stroke-color: red;
         stroke: red;
         -webkit-filter: drop-shadow(0 0 5px red);
         filter: drop-shadow(0 0 5px red);
