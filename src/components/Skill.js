@@ -56,9 +56,11 @@ export default function Skill() {
         {skillArray.map((skill, idx) => {
           return (
             <BackCircle key={idx} skill={skill}>
-              <svg>
-                <circle cx="80" cy="80" r="60" />
-              </svg>
+              <Safari skill={skill}>
+                <svg>
+                  <circle cx="80" cy="80" r="60" />
+                </svg>
+              </Safari>
               <SkillName key={skill}>{skill}</SkillName>
             </BackCircle>
           );
@@ -103,48 +105,49 @@ const BackCircle = styled.div`
   transform: rotate(-90deg);
   width: 160px;
   height: 160px;
-  circle {
-    fill: none;
-    stroke: white;
-    stroke-width: 10;
-    ${({ skill }) =>
-      skill === "HTML" &&
-      css`
-        -webkit-filter: drop-shadow(0 0 5px red);
-        filter: drop-shadow(0 0 5px red);
-      `}
-    ${({ skill }) =>
-      skill === "CSS" &&
-      css`
-        -webkit-filter: drop-shadow(0 0 5px blue);
-        filter: drop-shadow(0 0 5px blue);
-      `}
-      ${({ skill }) =>
-      skill === "JavaScript" &&
-      css`
-        -webkit-filter: drop-shadow(0 0 5px #f1d00a);
-        filter: drop-shadow(0 0 5px #f1d00a);
-      `}
-      ${({ skill }) =>
-      skill === "React" &&
-      css`
-        -webkit-filter: drop-shadow(0 0 5px black);
-        filter: drop-shadow(0 0 5px black);
-      `}
-      ${({ skill }) =>
-      skill === "TypeScript" &&
-      css`
-        -webkit-filter: drop-shadow(0 0 5px #2666cf);
-        filter: drop-shadow(0 0 5px #2666cf);
-      `}
-      ${({ skill }) =>
-      skill === "의사소통" &&
-      css`
-        -webkit-filter: drop-shadow(0 0 5px hotpink);
-        filter: drop-shadow(0 0 5px hotpink);
-      `}
-  }
   z-index: 10;
+`;
+
+const Safari = styled.div`
+  fill: none;
+  stroke: white;
+  stroke-width: 10;
+  ${({ skill }) =>
+    skill === "HTML" &&
+    css`
+      -webkit-filter: drop-shadow(0 0 5px red);
+      filter: drop-shadow(0 0 5px red);
+    `}
+  ${({ skill }) =>
+    skill === "CSS" &&
+    css`
+      -webkit-filter: drop-shadow(0 0 5px blue);
+      filter: drop-shadow(0 0 5px blue);
+    `}
+      ${({ skill }) =>
+    skill === "JavaScript" &&
+    css`
+      -webkit-filter: drop-shadow(0 0 5px #f1d00a);
+      filter: drop-shadow(0 0 5px #f1d00a);
+    `}
+      ${({ skill }) =>
+    skill === "React" &&
+    css`
+      -webkit-filter: drop-shadow(0 0 5px black);
+      filter: drop-shadow(0 0 5px black);
+    `}
+      ${({ skill }) =>
+    skill === "TypeScript" &&
+    css`
+      -webkit-filter: drop-shadow(0 0 5px #2666cf);
+      filter: drop-shadow(0 0 5px #2666cf);
+    `}
+      ${({ skill }) =>
+    skill === "의사소통" &&
+    css`
+      -webkit-filter: drop-shadow(0 0 5px hotpink);
+      filter: drop-shadow(0 0 5px hotpink);
+    `}
 `;
 const CircleBox = styled.div`
   transform: rotate(-90deg);
