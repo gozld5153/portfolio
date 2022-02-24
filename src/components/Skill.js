@@ -59,7 +59,7 @@ const SkillBox = styled.div`
   position: relative;
   margin-top: 50px;
   border: 2px solid red;
-  scroll-snap-align: start;
+  scroll-snap-align: center;
   svg {
     width: 160px;
     height: 160px;

@@ -92,7 +92,7 @@ const ProgressBar = styled.progress`
 const Container = styled.div`
   position: relative;
   height: 100vh;
-  scroll-snap-align: start;
+  scroll-snap-align: center;
   /* 랜딩박스 경계선 */
   border: 2px solid green;
 `;
