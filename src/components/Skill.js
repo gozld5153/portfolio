@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useRef } from "react";
 import styled, { css } from "styled-components";
+import Observer from "./Observer";
 
 export default function Skill() {
   const skillBox = useRef();
@@ -12,28 +13,10 @@ export default function Skill() {
     "TypeScript",
     "의사소통",
   ];
-
-  const handleSkill = useCallback((entry) => {
-    if (entry[0].isIntersecting) {
-      setIntersecting(true);
-    }
-  }, []);
-
-  useEffect(() => {
-    const options = {
-      root: null,
-      rootMargin: "0px",
-      threshold: 1,
-    };
-
-    let observer;
-    let skill = skillBox.current;
-    if (skill) {
-      observer = new IntersectionObserver(handleSkill, options);
-      observer.observe(skill);
-    }
-    return () => observer.disconnect(skill);
-  }, [handleSkill]);
+  const obFunc = (intersecting) => {
+    if (intersecting) setIntersecting(true);
+    else setIntersecting(false);
+  };
 
   return (
     <SkillBox id="skill">
@@ -50,21 +33,24 @@ export default function Skill() {
               </CircleBox>
             );
           })}
+
+        <SecondCircle>
+          {skillArray.map((skill, idx) => {
+            return (
+              <BackCircle key={idx} skill={skill}>
+                <Safari skill={skill}>
+                  <svg>
+                    <circle cx="80" cy="80" r="60" />
+                  </svg>
+                </Safari>
+                <SkillName key={skill}>{skill}</SkillName>
+              </BackCircle>
+            );
+          })}
+        </SecondCircle>
       </CircleContainer>
-      <SecondCircle>
-        {skillArray.map((skill, idx) => {
-          return (
-            <BackCircle key={idx} skill={skill}>
-              <Safari skill={skill}>
-                <svg>
-                  <circle cx="80" cy="80" r="60" />
-                </svg>
-              </Safari>
-              <SkillName key={skill}>{skill}</SkillName>
-            </BackCircle>
-          );
-        })}
-      </SecondCircle>
+
+      <Observer element={skillBox} callback={obFunc} />
     </SkillBox>
   );
 }
@@ -72,7 +58,12 @@ export default function Skill() {
 const SkillBox = styled.div`
   position: relative;
   margin-top: 50px;
-  height: 30vh;
+  border: 2px solid red;
+  scroll-snap-align: start;
+  svg {
+    width: 160px;
+    height: 160px;
+  }
 `;
 
 const Title = styled.div`
@@ -85,13 +76,14 @@ const Title = styled.div`
 `;
 
 const CircleContainer = styled.div`
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 `;
 
 const SecondCircle = styled(CircleContainer)`
-  transform: translateY(-100%);
+  position: absolute;
 `;
 
 const SkillName = styled.div`

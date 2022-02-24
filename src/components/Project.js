@@ -8,4 +8,6 @@ export default Project;
 
 const Container = styled.div`
   height: 100vh;
+  border: 2px solid blue;
+  scroll-snap-align: start;
 `;

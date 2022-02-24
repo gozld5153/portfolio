@@ -8,6 +8,11 @@ const GlobalStyle = createGlobalStyle`
     scroll-behavior: smooth;
   }
 
+  html {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+  }
+
   button {
     border: none;
     background-color: white;
