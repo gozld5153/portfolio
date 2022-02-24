@@ -8,10 +8,6 @@ export default function Landing({ scrollHeight, scrollTop, clientHeight }) {
   const [repeat, setRepeat] = useState(false);
   const [blink, setBlink] = useState(false);
 
-  // const scrollHeight = document.documentElement.scrollHeight;
-  // const scrollTop = document.documentElement.scrollTop;
-  // const clientHeight = document.documentElement.clientHeight;
-
   //커서 깜빡임 효과
   useEffect(() => {
     const timeSet = setTimeout(function () {
