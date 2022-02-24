@@ -12,7 +12,7 @@ const Observer = ({ callback }) => {
   useEffect(() => {
     const options = {
       root: null,
-      rootMargin: "0px",
+      rootMargin: "120px",
       threshold: 0,
     };
     let observer;
