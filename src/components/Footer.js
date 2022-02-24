@@ -54,7 +54,7 @@ const Footer = () => {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <FaBloggerB /> 블로그: yongsa.tistory.com/
+                  <FaBloggerB /> 블로그: yongsa.tistory.com
                 </a>
               </li>
             </ul>
@@ -110,9 +110,9 @@ const Title = styled.div`
 const Connect = styled.div`
   position: absolute;
   bottom: ${({ entry }) => (entry ? "0" : "-100%")};
-  width 100%;
+  width: 100%;
   height: 40vh;
-  background-color: gray;
+  background-color: #222222;
   transition: all 2s ease;
 `;
 
@@ -130,6 +130,9 @@ const LinkBox = styled.div`
   align-items: center;
   li {
     margin-bottom: 1rem;
+  }
+  a {
+    color: #f7f7f7;
   }
   svg {
     vertical-align: middle;

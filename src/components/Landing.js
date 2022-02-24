@@ -95,6 +95,8 @@ const Container = styled.div`
   scroll-snap-align: center;
   /* 랜딩박스 경계선 */
   border: 2px solid green;
+  background-color: #7b9acc;
+  color: #fcf6f5;
 `;
 const TopContainer = styled.div`
   position: absolute;
@@ -145,7 +147,7 @@ const CursorBox = styled.div`
 const Cursor = styled.div`
   width: 4px;
   height: 100%;
-  border: 2px solid black;
+  border: 2px solid #fcf6f5;
   display: ${({ active }) => (active ? "none" : "block")};
 `;
 

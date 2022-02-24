@@ -43,7 +43,6 @@ const VarBox = styled.div`
   top: 10px;
   float: right;
   z-index: 500;
-  opacity: 0.5;
 
   input {
     height: 2.5rem;
@@ -52,9 +51,12 @@ const VarBox = styled.div`
     font-size: 1.5rem;
     border: none;
     border-bottom: 2px solid gray;
+    background: rgba(243, 244, 245, 0.5);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     :focus {
       outline: none;
-      border-bottom: 3px solid black;
+      border-bottom: 3px solid gray;
     }
     @media only screen and (max-width: 530px) {
       font-size: 1.5rem;

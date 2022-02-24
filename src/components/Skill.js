@@ -58,9 +58,11 @@ export default function Skill() {
 }
 
 const SkillBox = styled.div`
+  padding-top: 3rem;
+  padding-bottom: 5rem;
+  background-color: #fcf6f5;
   position: relative;
   scroll-snap-align: start;
-  margin-bottom: 20px;
   svg {
     width: 160px;
     height: 160px;
@@ -71,20 +73,50 @@ const Title = styled.div`
   width: 30vh;
   font-size: 3rem;
   font-weight: bold;
-  border-bottom: 4px solid black;
-  margin: 2rem auto;
+  color: #7b9acc;
+  border-bottom: 4px solid #7b9acc;
+  margin: 1rem auto 4rem auto;
   text-align: center;
 `;
 
 const CircleContainer = styled.div`
+  width: 60%;
+  margin: 0 auto;
   position: relative;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1rem;
+  gap: 6rem 12rem;
+
+  @media screen and (max-width: 1454px) {
+    width: 60%;
+    gap: 6rem 8rem;
+  }
+  @media screen and (max-width: 1242px) {
+    width: 60%;
+    gap: 2rem 4rem;
+  }
+  @media screen and (max-width: 1028px) {
+    width: 70%;
+    gap: 2rem 4rem;
+  }
+
+  @media screen and (max-width: 968px) {
+    width: 80%;
+    gap: 2rem 4rem;
+  }
+  @media screen and (max-width: 774px) {
+    width: 90%;
+    gap: 2rem;
+  }
+  @media screen and (max-width: 425px) {
+    width: 100%;
+    gap: 1rem;
+  }
 `;
 
 const SecondCircle = styled(CircleContainer)`
+  width: 100%;
   position: absolute;
 `;
 
@@ -178,7 +210,7 @@ const CircleBox = styled.div`
         -webkit-filter: drop-shadow(0 0 2px #dd4b25);
         filter: drop-shadow(0 0 2px #dd4b25);
         animation: ${({ intersecting }) =>
-          intersecting ? "circle-html 1s ease-in-out forwards" : null};
+          intersecting ? "circle-html 3.5s ease-in-out forwards" : null};
         @keyframes circle-html {
           to {
             stroke-dashoffset: 100;
@@ -192,7 +224,7 @@ const CircleBox = styled.div`
         stroke: #264add;
         filter: drop-shadow(0 0 2px #264add);
         animation: ${({ intersecting }) =>
-          intersecting ? "circle-css 1s ease-in-out forwards" : null};
+          intersecting ? "circle-css 3.5s ease-in-out forwards" : null};
         @keyframes circle-css {
           to {
             stroke-dashoffset: 120;
@@ -206,7 +238,7 @@ const CircleBox = styled.div`
         stroke: #efd81d;
         filter: drop-shadow(0 0 2px #efd81d);
         animation: ${({ intersecting }) =>
-          intersecting ? "circle-js 1s ease-in-out forwards" : null};
+          intersecting ? "circle-js 3.5s ease-in-out forwards" : null};
         @keyframes circle-js {
           to {
             stroke-dashoffset: 130;
@@ -220,7 +252,7 @@ const CircleBox = styled.div`
         stroke: #01d1f7;
         filter: drop-shadow(0 0 2px #01d1f7);
         animation: ${({ intersecting }) =>
-          intersecting ? "circle-react 1s ease-in-out forwards" : null};
+          intersecting ? "circle-react 3.5s ease-in-out forwards" : null};
         @keyframes circle-react {
           to {
             stroke-dashoffset: 190;
@@ -234,7 +266,7 @@ const CircleBox = styled.div`
         stroke: #2e74c0;
         filter: drop-shadow(0 0 2px #2e74c0);
         animation: ${({ intersecting }) =>
-          intersecting ? "circle-ts 1s ease-in-out forwards" : null};
+          intersecting ? "circle-ts 3.5s ease-in-out forwards" : null};
         @keyframes circle-ts {
           to {
             stroke-dashoffset: 340;
@@ -248,7 +280,7 @@ const CircleBox = styled.div`
         stroke: hotpink;
         filter: drop-shadow(0 0 2px hotpink);
         animation: ${({ intersecting }) =>
-          intersecting ? "circle-community 1s ease-in-out forwards" : null};
+          intersecting ? "circle-community 3.5s ease-in-out forwards" : null};
         @keyframes circle-community {
           to {
             stroke-dashoffset: 40;
