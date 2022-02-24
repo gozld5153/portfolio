@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { FaAngleDoubleDown } from "react-icons/fa";
 
-export default function Landing() {
+export default function Landing({ scrollHeight, scrollTop, clientHeight }) {
   const [toggle, setToggle] = useState(false);
   const [introduce, setIntroduce] = useState("");
   const [repeat, setRepeat] = useState(false);
+  const [blink, setBlink] = useState(false);
 
-  const scrollHeight = document.documentElement.scrollHeight;
-  const scrollTop = document.documentElement.scrollTop;
-  const clientHeight = document.documentElement.clientHeight;
+  // const scrollHeight = document.documentElement.scrollHeight;
+  // const scrollTop = document.documentElement.scrollTop;
+  // const clientHeight = document.documentElement.clientHeight;
 
   //커서 깜빡임 효과
   useEffect(() => {
@@ -23,13 +25,16 @@ export default function Landing() {
     const testStr = "안녕하세요 풋내기 프론트엔드 개발자 황민환입니다.";
     let strArr = testStr.split("");
     let typingFnc = (str) => {
-      if (strArr.length <= 0) return;
+      if (strArr.length <= 0) {
+        setBlink(true);
+        return;
+      }
       testArr.push(str.shift());
       setTimeout(() => typingFnc(str), 200);
       setIntroduce(testArr.join(""));
     };
 
-    let start = setTimeout(() => typingFnc(strArr), 1500);
+    let start = setTimeout(() => typingFnc(strArr), 1000);
 
     //20초 후에 지우기
     let delIntro = () => {
@@ -42,6 +47,7 @@ export default function Landing() {
       setIntroduce(testArr.join(""));
     };
     let finish = setTimeout(() => delIntro(), 20 * 1000);
+
     return () => {
       clearTimeout(finish);
       clearTimeout(start);
@@ -51,7 +57,7 @@ export default function Landing() {
   return (
     <>
       <ProgressBar value={scrollTop} max={scrollHeight - clientHeight} />
-      <Container>
+      <Container id="start">
         <TopContainer>
           <FlexBox>
             <div>{introduce}</div>
@@ -62,6 +68,10 @@ export default function Landing() {
         </TopContainer>
         {/* 배경화면 벚꽃 흩날리기! */}
         {/* <SakuraBg src={sakura} alt="" /> */}
+        <DownArrow blink={blink}>
+          <span>START</span>
+          <FaAngleDoubleDown />
+        </DownArrow>
       </Container>
     </>
   );
@@ -136,6 +146,37 @@ const Cursor = styled.div`
   height: 100%;
   border: 2px solid black;
   display: ${({ active }) => (active ? "none" : "block")};
+`;
+
+const DownArrow = styled.div`
+  font-size: 2rem;
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  opacity: ${({ blink }) => (blink ? "1" : "0")};
+  transition: opacity 2s linear;
+
+  span {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+  }
+  svg {
+    animation: bounce 0.7s ease-in-out infinite;
+    @keyframes bounce {
+      0% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(20px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+  }
 `;
 
 // const SakuraBg = styled.img`

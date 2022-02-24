@@ -34,8 +34,9 @@ export default function Skill() {
     }
     return () => observer.disconnect(skill);
   }, [handleSkill]);
+
   return (
-    <SkillBox>
+    <SkillBox id="skill">
       <Title>Skill</Title>
       <CircleContainer ref={skillBox}>
         {Array(6)
@@ -70,6 +71,8 @@ export default function Skill() {
 
 const SkillBox = styled.div`
   position: relative;
+  margin-top: 50px;
+  height: 30vh;
 `;
 
 const Title = styled.div`
@@ -77,7 +80,7 @@ const Title = styled.div`
   font-size: 3rem;
   font-weight: bold;
   border-bottom: 4px solid black;
-  margin: 1rem auto;
+  margin: 2rem auto;
   text-align: center;
 `;
 
@@ -236,8 +239,8 @@ const CircleBox = styled.div`
         stroke: hotpink;
         filter: drop-shadow(0 0 5px hotpink);
         animation: ${({ intersecting }) =>
-          intersecting ? "circle-html 1s ease-in-out forwards" : null};
-        @keyframes circle-html {
+          intersecting ? "circle-community 1s ease-in-out forwards" : null};
+        @keyframes circle-community {
           to {
             stroke-dashoffset: 40;
           }
