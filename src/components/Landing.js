@@ -86,7 +86,7 @@ const ProgressBar = styled.progress`
   ::-webkit-progress-bar {
     background-color: white;
   }
-  z-index: 100;
+  z-index: 600;
 `;
 
 const Container = styled.div`
