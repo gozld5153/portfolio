@@ -10,7 +10,9 @@ const GlobalStyle = createGlobalStyle`
 
   html {
     scroll-snap-type: y mandatory;
-    overflow-y: scroll;
+    @media screen and (max-width: 768px){
+      scroll-snap-type: none;
+    } 
   }
 
   button {

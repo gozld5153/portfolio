@@ -81,8 +81,21 @@ const Title = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 4rem;
+  @media screen and (max-width: 980px) {
+    font-size: 2rem;
+  }
+  @media screen and (max-width: 530px) {
+    font-size: 1rem;
+  }
   span {
     width: 3rem;
+    @media screen and (max-width: 980px) {
+      width: 2rem;
+    }
+
+    @media screen and (max-width: 530px) {
+      width: 1rem;
+    }
     display: inline-block;
     transform: translateY(-50px);
     opacity: 0;
@@ -106,6 +119,12 @@ const Connect = styled.div`
 const LinkBox = styled.div`
   height: 100%;
   font-size: 2rem;
+  @media screen and (max-width: 980px) {
+    font-size: 1.5rem;
+  }
+  @media screen and (max-width: 530px) {
+    font-size: 1rem;
+  }
   display: flex;
   justify-content: center;
   align-items: center;
