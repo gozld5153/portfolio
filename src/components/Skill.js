@@ -21,7 +21,7 @@ export default function Skill() {
 
   return (
     <SkillBox id="skill">
-      <Title>Skill</Title>
+      <Title>Skills</Title>
       <CircleContainer ref={skillBox}>
         {skillArray.map((name, idx) => {
           return (
@@ -52,7 +52,7 @@ export default function Skill() {
         </SecondCircle>
       </CircleContainer>
 
-      <Observer element={skillBox} callback={obFunc} />
+      <Observer element={skillBox} callback={obFunc} marginStr="120px" />
     </SkillBox>
   );
 }
@@ -193,8 +193,8 @@ const CircleBox = styled.div`
     transform: translate(0%, -50%) rotate(90deg);
     text-align: center;
     width: 160px;
-    font-weight: bold;
     font-size: 1.2rem;
+    padding-top: 1rem;
   }
   circle {
     fill: none;

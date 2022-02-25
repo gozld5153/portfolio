@@ -25,7 +25,7 @@ export default function Translate() {
     <VarBox>
       <input
         type="text"
-        placeholder="변수명 번역기"
+        placeholder="한글을 입력하세요."
         onChange={handleTranslation}
         onKeyPress={fetchingTranslation}
         value={value}
@@ -54,12 +54,13 @@ const VarBox = styled.div`
     background: rgba(243, 244, 245, 0.5);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
+    color: #222222;
     :focus {
       outline: none;
       border-bottom: 3px solid gray;
     }
-    @media only screen and (max-width: 530px) {
-      font-size: 1.5rem;
+    @media only screen and (max-width: 1024px) {
+      font-size: 1rem;
       width: 12rem;
     }
   }

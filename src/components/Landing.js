@@ -26,7 +26,7 @@ export default function Landing({ scrollHeight, scrollTop, clientHeight }) {
         return;
       }
       testArr.push(str.shift());
-      setTimeout(() => typingFnc(str), 200);
+      setTimeout(() => typingFnc(str), 100);
       setIntroduce(testArr.join(""));
     };
 
@@ -89,8 +89,6 @@ const Container = styled.div`
   position: relative;
   height: 100vh;
   scroll-snap-align: center;
-  /* 랜딩박스 경계선 */
-  border: 2px solid green;
   background-color: #7b9acc;
   color: #fcf6f5;
 `;
@@ -103,8 +101,9 @@ const TopContainer = styled.div`
   display: flex;
   justify-content: center;
   padding: 2rem;
-  font-family: "East Sea Dokdo", cursive;
-
+  @media only screen and (max-width: 375px) {
+    padding: 0.5rem;
+  }
   /* 배경이 없을땐 주석처리! */
   /* color: white;*/
   z-index: 400;
@@ -113,13 +112,13 @@ const TopContainer = styled.div`
 const FlexBox = styled.div`
   display: flex;
   font-size: 52px;
-  @media only screen and (max-width: 980px) {
+  @media only screen and (max-width: 1123px) {
     font-size: 32px;
   }
-  @media only screen and (max-width: 530px) {
+  @media only screen and (max-width: 733px) {
     font-size: 28px;
   }
-  @media only screen and (max-width: 425px) {
+  @media only screen and (max-width: 655px) {
     font-size: 16px;
   }
 `;
@@ -128,13 +127,13 @@ const CursorBox = styled.div`
   width: 1px;
   height: 52px;
   margin-left: 4px;
-  @media only screen and (max-width: 980px) {
+  @media only screen and (max-width: 1123px) {
     height: 32px;
   }
-  @media only screen and (max-width: 530px) {
+  @media only screen and (max-width: 733px) {
     height: 28px;
   }
-  @media only screen and (max-width: 425px) {
+  @media only screen and (max-width: 655px) {
     height: 16px;
     margin-left: 2px;
   }

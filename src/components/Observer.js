@@ -1,6 +1,6 @@
 import { useEffect, useCallback, useRef } from "react";
 
-const Observer = ({ callback }) => {
+const Observer = ({ callback, marginStr }) => {
   const element = useRef();
   const handleObserver = useCallback(
     (entry) => {
@@ -12,7 +12,7 @@ const Observer = ({ callback }) => {
   useEffect(() => {
     const options = {
       root: null,
-      rootMargin: "120px",
+      rootMargin: marginStr,
       threshold: 0,
     };
     let observer;
@@ -22,7 +22,7 @@ const Observer = ({ callback }) => {
       observer.observe(obEle);
     }
     return () => observer.disconnect(obEle);
-  }, [handleObserver]);
+  }, [handleObserver, marginStr]);
   return <div ref={element}></div>;
 };
 

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Skill, Landing, Translate, Nav, Project, Footer } from "./components";
+
 // import sakura from "./img/sakura.gif";
 
 export default function App() {
