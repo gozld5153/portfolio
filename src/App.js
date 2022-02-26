@@ -29,7 +29,7 @@ export default function App() {
 
   return (
     <Container>
-      <Nav />
+      {/* <Nav /> */}
       <Translate />
       <Landing
         scrollHeight={scrollHeight}
